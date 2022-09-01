@@ -4,7 +4,7 @@ var md5 = require('md5');
 export default async function handler(req, res) {
     let { email, password } = req.body;
     password = md5(password);
-    connection.query("SELECT * FROM user WHERE email = ? and password = ?", [email, password], async (err, result) => {
+    await connection.query("SELECT * FROM user WHERE email = ? and password = ?", [email, password], async (err, result) => {
         if (err) res.send({
             isRegistred: false,
             message: err.sqlMessage
