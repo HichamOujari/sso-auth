@@ -18,7 +18,6 @@ async function initAuth() {
     data = await data.json()
     //let { data } = await axios.post(hostname+'/api/auth/validation-token', )
     if (!data.isRegistred) form.style.display = 'block';
-    else console.log(data);
 }
 
 async function signIn() {
