@@ -19,6 +19,26 @@ async function initAuth() {
     //let { data } = await axios.post(hostname+'/api/auth/validation-token', )
     if (!data.isRegistred) form.style.display = 'block';
     else form.style.display = 'none';
+    let apps = await fetch(hostname+'/api/get-apps', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ hostname: document.location.href })
+    });
+
+    apps =  await apps.json()
+    if(apps.length == 0) {
+        await fetch(hostname+'/api/add-apps', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ hostname: document.location.href })
+        });
+    }
 }
 
 async function signIn() {

@@ -6,7 +6,6 @@ let connection = mysql.createConnection({
   password: '',
   port: 8889,
   database: 'second',
-
   insecureAuth: true
 });
 
